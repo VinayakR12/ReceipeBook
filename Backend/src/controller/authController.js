@@ -1,45 +1,3 @@
-// import User from "../model/user.js";
-// import bcrypt from 'bcrypt';
-// import jwt from 'jsonwebtoken';
-
-// // SECRET KEY for JWT
-// import dotenv from 'dotenv';
-// dotenv.config();
-// const JWT_SECRET = process.env.JWT_SECRET; // Replace with an environment variable in production
-
-// // Register User
-// export const registerUser = async (req, res) => {
-//   const { name, email, password } = req.body;
-//   try {
-//     // Check if user already exists
-//     const existingUser = await User.findOne({ email });
-//     if (existingUser) {
-//       return res.status(400).json({ message: 'User already exists' });
-//     }
-
-//     // Hash the password
-//     const hashedPassword = await bcrypt.hash(password, 10);
-
-//     // Create new user
-//     const newUser = new User({ name, email, password: hashedPassword });
-//     await newUser.save();
-
-//     res.status(201).json({ message: 'User registered successfully' });
-//   } catch (error) {
-//     res.status(500).json({ message: 'Something went wrong', error });
-//   }
-// };
-
-
-
-
-
-
-
-
-
-
-
 import User from "../model/user.js";
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
@@ -48,32 +6,6 @@ dotenv.config();
 
 const JWT_SECRET = process.env.JWT_SECRET; // Ensure your JWT_SECRET is set in .env
 
-// Register User
-// export const registerUser = async (req, res) => {
-//   const { name, email, password } = req.body;
-//   try {
-//     // Check if user already exists
-//     const existingUser = await User.findOne({ email });
-//     if (existingUser) {
-//       return res.status(400).json({ message: 'User already exists' });
-//     }
-
-//     // Hash the password
-//     const hashedPassword = await bcrypt.hash(password, 10);
-
-//     // Create new user
-//     const newUser = new User({ name, email, password: hashedPassword });
-//     await newUser.save();
-
-//     // Respond with success message
-//     res.status(201).json({ message: 'User registered successfully' });
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: 'Something went wrong', error });
-//   }
-// };
-
-// Register User
 export const registerUser = async (req, res) => {
   const { name, email, password } = req.body;
   try {
