@@ -82,6 +82,7 @@ function Latest() {
       try {
         const response = await axios.get(`${DB_API}api/allitem`);
 
+        // Shuffle and get only 6 random recipes
         const randomItems = response.data
           .sort(() => 0.5 - Math.random())
           .slice(0, 6);
@@ -101,16 +102,19 @@ function Latest() {
         Latest Recipes
       </h1>
 
-      {/* Carousel Container */}
-      <div className="relative flex justify-center">
+      {/* Carousel Wrapper */}
+      <div className="relative flex justify-center w-full">
         <div
-          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory space-x-6 p-5 max-w-4xl mx-auto"
-          style={{ scrollbarWidth: "none" }}
+          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory space-x-4 p-4 w-full max-w-[95%] md:max-w-3xl lg:max-w-4xl mx-auto"
+          style={{
+            scrollbarWidth: "none", // Hide scrollbar (Firefox)
+            WebkitOverflowScrolling: "touch", // Smooth scrolling (iOS)
+          }}
         >
           {items.map((item) => (
             <div
               key={item._id}
-              className="snap-center shrink-0 w-64 h-[350px] bg-white rounded-lg shadow-md"
+              className="snap-center shrink-0 w-56 h-[320px] bg-white rounded-lg shadow-md"
             >
               <Card item={item} />
             </div>
@@ -134,5 +138,6 @@ function Latest() {
 }
 
 export default Latest;
+
 
 
