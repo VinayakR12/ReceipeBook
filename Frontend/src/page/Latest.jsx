@@ -66,7 +66,6 @@
 
 // export default Latest;
 
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Card from "../components/Header/Card";
@@ -98,14 +97,18 @@ function Latest() {
 
   return (
     <>
+      {/* Title */}
       <h1 className="text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-500 to-pink-600 mb-6">
         Latest Recipes
       </h1>
 
-      {/* Carousel Wrapper */}
-      <div className="relative flex justify-center w-full">
+      {/* Carousel Wrapper - Keeps everything inside screen */}
+      <div className="flex justify-center w-full">
         <div
-          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory space-x-4 p-4 w-full max-w-[95%] md:max-w-3xl lg:max-w-4xl mx-auto"
+          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory space-x-4 p-4 
+                     w-[98%] max-w-[1200px] mx-auto 
+                     md:max-w-4xl 
+                     sm:max-w-[90%] sm:px-2"
           style={{
             scrollbarWidth: "none", // Hide scrollbar (Firefox)
             WebkitOverflowScrolling: "touch", // Smooth scrolling (iOS)
@@ -114,7 +117,7 @@ function Latest() {
           {items.map((item) => (
             <div
               key={item._id}
-              className="snap-center shrink-0 w-56 h-[320px] bg-white rounded-lg shadow-md"
+              className="snap-center shrink-0 w-[180px] h-[280px] sm:w-[160px] sm:h-[260px] bg-white rounded-lg shadow-md"
             >
               <Card item={item} />
             </div>
@@ -138,6 +141,3 @@ function Latest() {
 }
 
 export default Latest;
-
-
-
