@@ -82,10 +82,9 @@ function Latest() {
       try {
         const response = await axios.get(`${DB_API}api/allitem`);
 
-        // Shuffle items and select only 6 random recipes
         const randomItems = response.data
           .sort(() => 0.5 - Math.random())
-          .slice(0, 7);
+          .slice(0, 6);
 
         setItems(randomItems);
       } catch (error) {
@@ -98,18 +97,21 @@ function Latest() {
 
   return (
     <>
-      <h1 className="text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-500 to-pink-600 mb-8 text-shadow-md transition duration-500 ease-in-out transform hover:scale-105">
+      <h1 className="text-4xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-500 to-pink-600 mb-6">
         Latest Recipes
       </h1>
 
-      {/* Carousel Wrapper */}
-      <div className="relative w-full overflow-hidden">
+      {/* Carousel Container */}
+      <div className="relative flex justify-center">
         <div
-          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory space-x-4 p-5"
-          style={{ scrollbarWidth: "none" }} // Hides scrollbar on Firefox
+          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory space-x-6 p-5 max-w-4xl mx-auto"
+          style={{ scrollbarWidth: "none" }}
         >
           {items.map((item) => (
-            <div key={item._id} className="snap-center shrink-0">
+            <div
+              key={item._id}
+              className="snap-center shrink-0 w-64 h-[350px] bg-white rounded-lg shadow-md"
+            >
               <Card item={item} />
             </div>
           ))}
@@ -117,17 +119,20 @@ function Latest() {
       </div>
 
       {/* View All Recipes Button */}
-      <Link to="/allReceipe" className="flex items-center justify-center mt-6 mb-10">
-        <button
-          type="button"
-          className="text-white bg-gradient-to-r from-cyan-500 to-blue-900 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-6 py-3 text-center transition duration-300 ease-in-out transform hover:scale-105"
-        >
-          View All Recipes
-        </button>
-      </Link>
+      <div className="flex justify-center mt-6 mb-10">
+        <Link to="/allReceipe">
+          <button
+            type="button"
+            className="text-white bg-gradient-to-r from-cyan-500 to-blue-900 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-6 py-3 text-center transition duration-300 ease-in-out transform hover:scale-105"
+          >
+            View All Recipes
+          </button>
+        </Link>
+      </div>
     </>
   );
 }
 
 export default Latest;
+
 
