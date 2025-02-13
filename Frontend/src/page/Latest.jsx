@@ -5,15 +5,36 @@ import Card from '../components/Header/Card';
 import { Link } from 'react-router-dom';
 const DB_API = import.meta.env.VITE_API_BASE_URL;
 function Latest() {
-  const [items, setItems] = useState([]);
+  // const [items, setItems] = useState([]);
 
-  useEffect(() => {
-    const getItem = async () => {
+  // useEffect(() => {
+  //   const getItem = async () => {
+  //     const response = await axios.get(`${DB_API}api/allitem`);
+  //     setItems(response.data);
+  //   };
+  //   getItem();
+  // }, []);
+const [items, setItems] = useState([]);
+
+useEffect(() => {
+  const getItem = async () => {
+    try {
       const response = await axios.get(`${DB_API}api/allitem`);
-      setItems(response.data);
-    };
-    getItem();
-  }, []);
+      const allItems = response.data;
+
+      // Shuffle the array and take only 6 random items
+      const randomItems = allItems
+        .sort(() => 0.5 - Math.random()) // Shuffle array
+        .slice(0, 6); // Take first 6 items
+
+      setItems(randomItems);
+    } catch (error) {
+      console.error("Error fetching items:", error);
+    }
+  };
+
+  getItem();
+}, []);
 
   return (
     <>
